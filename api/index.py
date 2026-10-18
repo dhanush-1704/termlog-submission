@@ -122,6 +122,8 @@ def root():return {"service":"Acme Appliances order ledger","status":"ok","endpo
 @app.get("/health")
 def health():return {"ok":True}
 @app.post("/answer")
+@app.post("/api/index")
+@app.post("/api/index.py")
 def answer(body:Question):
     try:return {"answer":compute(body.question.lower().strip())}
     except Exception as e:raise HTTPException(status_code=503,detail="Ledger data unavailable: "+type(e).__name__)
